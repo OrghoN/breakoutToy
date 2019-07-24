@@ -1,22 +1,20 @@
+# External Dependencies
 import tkinter
-from collections import namedtuple
 
-#Define Data Structures
-Point = namedtuple('Point', ['x', 'y'])
-Ball = namedtuple('Ball', ['center', 'radius', 'color', 'velocity'])
-Brick = namedtuple('Brick', ['bottomLeft', 'topRight', 'color', 'health'])
-Paddle = namedtuple('Paddle', ['bottomLeft', 'topRight', 'color'])
+# Internal Dependencies
+from dataStructures import *
+from configuration import *
+import initializeObjects as initialize
 
-#Define initial Parameters
-INITIAL_WIDTH = 1600
-INITIAL_HEIGHT = 900
-
-def setupWindow():
-    master = tkinter.Tk()
-    canvas = tkinter.Canvas(master, width = INITIAL_WIDTH, height = INITIAL_HEIGHT)
-    # canvas.pack(side="bottom", fill="both", expand=True)
-    canvas.pack()
+def drawBricks(canvas, bricks):
+    for brick in bricks:
+        canvas.create_rectangle(brick.topLeft.x, brick.topLeft.y, brick.bottomRight.x, brick.bottomRight.y, fill=brick.color)
 
 
-setupWindow()
+canvas = initialize.setupWindow()
+bricks = initialize.makeBricks()
+
+
+drawBricks(canvas, bricks)
+
 tkinter.mainloop()
