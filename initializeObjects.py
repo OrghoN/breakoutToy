@@ -54,6 +54,7 @@ def makeBricks(canvas):
 
     return map
 
+
 def makeBall(canvas, origin, radius, color, velocity):
     graphical = canvas.create_oval(origin.x - radius, origin.y - radius, origin.x + radius, origin.y + radius, fill = color, width=0)
     return Ball(origin, radius, color, velocity, graphical)
